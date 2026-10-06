@@ -1,0 +1,27 @@
+# Data and outputs are not tracked - this repository is code only.
+*.rds
+*.RDS
+*.qs
+*.h5ad
+*.tif
+*.tiff
+*.png
+*.pdf
+*.xlsx
+*.csv
+*.tsv
+!figure_panel_map.tsv
+
+# Logs and scheduler output
+*.log
+*.o[0-9]*
+*.e[0-9]*
+logs/
+pbs_out/
+
+.Rhistory
+.RData
+.Rproj.user/
+__pycache__/
+*.pyc
+.DS_Store

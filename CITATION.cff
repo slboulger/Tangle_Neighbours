@@ -1,0 +1,72 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "Code for: Neuronal and glial transcriptional states vary with proximity to tangle-bearing neurons in the human entorhinal cortex"
+version: 1.0.0
+date-released: 2026-10-06
+license: MIT
+repository-code: "https://github.com/slboulger/Tangle_Neighbours"
+abstract: >-
+  Analysis code for a study combining 6,000-plex CosMx spatial transcriptomics
+  of human entorhinal cortex with post-run PHF1 immunofluorescence (167,176 cells,
+  9 donors) and imaging mass cytometry (127,157 cells, 44 donors) to characterise
+  tangle-bearing neurons and how neuronal and glial states vary with distance to
+  the nearest tangle-bearing neuron.
+keywords:
+  - Alzheimer's disease
+  - neurofibrillary tangles
+  - tau
+  - spatial transcriptomics
+  - CosMx
+  - imaging mass cytometry
+  - entorhinal cortex
+authors:
+  - family-names: Boulger
+    given-names: Samuel L.
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+    orcid: "https://orcid.org/0009-0008-6139-1726"
+  - family-names: Lambie
+    given-names: Nathalie
+    affiliation: "NIHR Imperial BRC Genomics Facility, Imperial College London"
+  - family-names: Wos
+    given-names: Jan
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Papageorgopoulou
+    given-names: Marianna
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Méndez Pastor
+    given-names: Sabino
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Adair
+    given-names: Emily
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Caramello
+    given-names: Alessia
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London; Neuroscience Institute Cavalieri Ottolenghi, University of Turin"
+  - family-names: Fancy
+    given-names: Nurun N.
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Jackson
+    given-names: Johanna S.
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Duff
+    given-names: Eugene P.
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Mallach
+    given-names: Anna
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London"
+  - family-names: Matthews
+    given-names: Paul M.
+    affiliation: "UK Dementia Research Institute, Imperial College London; Department of Brain Sciences, Imperial College London; Rosalind Franklin Institute, Didcot"
+    orcid: "https://orcid.org/0000-0002-1619-8328"
+references:
+  - type: article
+    title: "Intrinsic molecular susceptibility underlies selective neuronal vulnerability in the Alzheimer's disease entorhinal cortex"
+    doi: "10.64898/2026.06.22.733753"
+    year: 2026
+    notes: "bioRxiv preprint describing the imaging mass cytometry dataset analysed here."
+    authors:
+      - family-names: Boulger
+        given-names: Samuel L.
+        orcid: "https://orcid.org/0009-0008-6139-1726"
+      - name: "et al."

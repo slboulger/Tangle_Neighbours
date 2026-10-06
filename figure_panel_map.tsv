@@ -1,0 +1,62 @@
+panel	description	modality	scripts	output_directory
+1A	Cohort / workflow schematic	schematic	(not archived)	(project root)
+1B	Marker z-score heatmap, broad classes	CosMx	plot_aucell_heatmaps_renamed.R	AUCell_1/ + plots/aucell_heatmaps/
+1C	Marker z-score heatmap, neuronal subtypes	CosMx	plot_aucell_heatmaps_renamed.R	AUCell_Neuron/ + plots/aucell_heatmaps/
+1D	Per-donor cell-type composition	CosMx	plot_celltype_composition_by_sample.R	plots/celltype_composition_by_sample/
+1E	Segmented FOV, DAPI + PHF1, arrowheads	CosMx image	plot_phf1_celltype_overlay.py	plots/phf1_celltype_overlay_highdef/
+1F	PHF1 p95 intensity recovers manual calls in neurons	CosMx	plot_phf1_intensity_validation_neurons.R; plot_phf1_intensity_validation.R	phf1_v2/plots/phf1_intensity_validation_neurons/
+2A	Tangle-bearing neurons per mm2 by subtype	CosMx	plot_phf1_neuron_density_by_celltype.R	phf1_v2/plots/phf1_neuron_density/
+2B	GO dotplot, tangle-bearing vs tangle-free	CosMx	plot_dotplot_pathway_cat_phf1.r	phf1_v2/plots/dotplot_pathway_cat_phf1/Exc-IT-L2-3-CBLN2-HOPX/
+2C	Tangle-bearing CBLN2 neuron crop, NADH transcripts	CosMx image	plot_tangle_cell_crops.py	phf1_v2/plots/phf1_fig2de_pair/
+2D	Tangle-free CBLN2 neuron crop, NADH transcripts	CosMx image	plot_tangle_cell_crops.py	phf1_v2/plots/phf1_fig2de_pair/
+2E	IMC state markers, tangle-bearing vs tangle-free (donor-interval forest)	IMC	imc_phf1_state_markers_forest_panel.R; imc_phf1_state_markers_subsets.R	plots/imc_phf1_state_markers_forest_panel/
+2F	Representative IMC ROI (PHF1/p62/ubK48/DNA)	IMC image	(not archived)	plots/imc_images/
+3A	nDEG vs distance, per neuronal subtype	CosMx	nDEG_by_celltype_linear.R	phf1_v2/deg/de_linear_distance/
+3B	GO dotplot, distance DEG (proximity-signed)	CosMx	plot_dotplot_pathway_linear_distance_phf1.r	phf1_v2/plots/dotplot_pathway_linear_distance/Exc-IT-L2-3-CBLN2-HOPX/
+3C	Reactome 'cellular responses to stimuli' over distance, CBLN2	CosMx	plot_reactome_stress_death_vs_phf1_distance.R; run_reactome_stress_death_distance.sh	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+3D	Reactome 'autophagy' over distance, CBLN2	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+3E	IMC protein gradients vs tangle distance	IMC	imc_phf1_distance_markers_subsets.R	plots/imc_phf1_distance_markers_subsets/
+4A	PHF1 intensity in tangle-free CBLN2 vs distance	CosMx	phf1_intensity_gradient_neurons.R	phf1_v2/plots/phf1_intensity_gradient_neurons_1000um/
+4B	PHF1 / Otero module scores over distance, intensity-adjusted	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
+4C	RRHO2 heatmap, cell-autonomous vs proximity	CosMx	rrho2_decomposition_phf1.r	phf1_v2/plots/decompose_tangle_response_phf1/Exc-IT-L2-3-CBLN2-HOPX/rrho2/
+4D	Discordant up-in-tangle / down-near, top 100	CosMx	plot_rrho2_ud_top100_annotated.R; rrho2_decomposition_phf1.r	phf1_v2/plots/decompose_tangle_response_phf1/Exc-IT-L2-3-CBLN2-HOPX/rrho2/
+4E	Discordant down-in-tangle / up-near (n=39)	CosMx	plot_rrho2_du_annotated.R; rrho2_decomposition_phf1.r	phf1_v2/plots/decompose_tangle_response_phf1/Exc-IT-L2-3-CBLN2-HOPX/rrho2/
+5A	IMC nucleus area vs tangle distance	IMC	imc_phf1_morphology_dist_phf1_panel.R	plots/imc_phf1_morphology_dist_phf1_panel/
+5B	IMC total nuclear DNA vs tangle distance	IMC	imc_phf1_dna_dist_phf1_panel.R	plots/imc_phf1_dna_dist_phf1_panel/
+5C	CosMx rRNA channel vs tangle distance, CBLN2	CosMx	phf1_channel_intensity_exc.R; run_morphology_observed.sh; nn3_phf1_vs_neg.R	phf1_v2/plots/phf1_channel_intensity_combined_1000um/
+5D	Representative IMC nuclei, tangle-bearing vs tangle-free, paired by subcluster	IMC image	imc_phf1_nucleus_crops.py; imc_phf1_nucleus_crops_figure.py; imc_phf1_nucleus_crops_pairs.py; imc_phf1_nucleus_crops_singles.py	phf1_v2/plots/imc_phf1_nucleus_crops/
+6A	Tangle-to-glia distance vs label-shuffled null	CosMx	plot_dist_to_phf1_by_glia_vs_null.R; null_glia_distance_within_celltype.R; plot_dist_to_phf1_braak_celltype.R	phf1_v2/plots/dist_to_phf1_glia_vs_null/
+6B	Astrocyte state module scores vs distance (Serrano-Pozo states)	CosMx	plot_serrano_astro_vs_phf1_distance_modelp.R	phf1_v2/plots/module_score_serrano_astro_vs_phf1_distance_modelp_1000um/
+6C	GFAP vs tangle distance, IMC protein and CosMx RNA on one axis	IMC + CosMx	imc_cosmx_gfap_distance_panel.R; imc_phf1_glia_distance.R	phf1_v2/plots/imc_cosmx_gfap_distance_panel/
+6D	Representative IMC ROI (PHF1/GFAP/S100B/DNA)	IMC image	(not archived)	plots/imc_gfap_images/
+6E	Microglial reactive module scores vs distance	CosMx	plot_modulescore_vs_phf1_distance_modelp.R	phf1_v2/plots/module_score_vs_phf1_distance_modelp_1000um/
+S1A	Exclusion-radius concordance of distance coefficients	CosMx	collate_exclusion_radius.r; run_deg_linear_distance.sh	phf1_v2/plots/exclusion_radius_Exc_IT_L2_3_CBLN2_HOPX/
+S1B	Distance coefficients with scaled cortical depth added as a covariate	CosMx	collate_depth_covariate.r; deg_dream_linear_distance_depth_phf1.r	phf1_v2/plots/depth_adjustment_CBLN2/
+S1C	Distance coefficients after simulating unseen tangles in the third dimension	CosMx	collate_3d_distance_deg.r; deg_dream_linear_distance_3d_phf1.r; run_deg_linear_distance_3d.sh	phf1_v2/plots/tangle_3d_adjustment_CBLN2/
+S2A	Reactome programmed cell death over distance, CBLN2	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+S2B	Per-gene decomposition, intrinsic apoptosis - tangle contrast	CosMx	plot_reactome_gene_contribution.R; run_reactome_gene_contribution.sh	phf1_v2/plots/reactome_gene_contribution_1000um/
+S2C	Per-gene decomposition, intrinsic apoptosis - proximity	CosMx	plot_reactome_gene_contribution.R	phf1_v2/plots/reactome_gene_contribution_1000um/
+S3 (all)	3-NN spacing vs permutation null - assembled figure	CosMx	nn3_dist_phf1_panel_null.R; run_nn3.sh; nn3_phf1_vs_neg.R; nn3_over_phf1_distance.R; null_replica_nn3.R	phf1_v2/plots/nn3_dist_phf1_panel_null_1000um/
+S3A	Observed vs mean null 3-NN curves	CosMx	nn3_dist_phf1_panel_null.R	phf1_v2/plots/nn3_dist_phf1_panel_null_1000um/
+S3B	Observed minus mean null	CosMx	nn3_dist_phf1_panel_null.R	phf1_v2/plots/nn3_dist_phf1_panel_null_1000um/
+S3C	Null beta distribution with observed beta	CosMx	nn3_null_deviation.R	phf1_v2/plots/nn3_null_deviation/
+S4A	Distance slope before vs after PHF1-intensity adjustment	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
+S4B	PHF1 module: slope with 0-200 um exclusion	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
+S4C	Otero-Garcia: slope with 0-200 um exclusion	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
+S4D	PHF1 module: slope by PHF1-intensity decile	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
+S4E	Otero-Garcia: slope by PHF1-intensity decile	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
+S5A-C	Stably expressed gene (SEG) negative control over distance	CosMx	plot_seg_control_composite_matched.R; modulescore_seg_control_vs_phf1_distance.R; prepare_seg_geneset_reference.R	phf1_v2/plots/seg_control_paper_serrano/
+S6	GO dotplot, concordant RRHO2 up-up quadrant	CosMx	plot_dotplot_pathway_rrho2_phf1.r; rrho2_decomposition_phf1.r	phf1_v2/plots/dotplot_pathway_rrho2_phf1/Exc-IT-L2-3-CBLN2-HOPX/
+S7A	IMC nucleus eccentricity vs tangle distance	IMC	imc_phf1_morphology_dist_phf1_panel.R	plots/imc_phf1_morphology_dist_phf1_panel/
+S7B	CosMx nucleus area vs tangle distance, CBLN2	CosMx	phf1_morphology_dist_phf1_panel.R; run_morphology_observed.sh; phf1_morphology_exc.R; phf1_distance_morphology_exc.R	phf1_v2/plots/phf1_morphology_dist_phf1_panel_1000um/
+S8A	Covariate ladder: IMC GFAP vs distance	IMC	imc_covariate_sensitivity.R	plots/imc_covariate_sensitivity/
+S8B	Covariate ladder: IMC state markers, tangle contrast	IMC	imc_covariate_sensitivity.R; imc_phf1_state_markers_subsets.R	plots/imc_covariate_sensitivity/
+S8C	Covariate ladder: IMC state markers vs distance	IMC	imc_covariate_sensitivity.R	plots/imc_covariate_sensitivity/
+S8D	IMC state markers vs tangle distance, stratified by plaque proximity	IMC	imc_amyloid_tangle_coupling.R	plots/imc_amyloid_tangle_coupling/
+S8E	IMC GFAP in astrocytes vs tangle distance, stratified by plaque proximity	IMC	imc_amyloid_tangle_coupling.R	plots/imc_amyloid_tangle_coupling/
+S9A	Reactome pcd modules over distance, Astro	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+S9B	Reactome stress modules over distance, Astro	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+S9C	Reactome autophagy modules over distance, Astro	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+S9D	Reactome pcd modules over distance, Micro	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+S9E	Reactome stress modules over distance, Micro	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
+S9F	Reactome autophagy modules over distance, Micro	CosMx	plot_reactome_stress_death_vs_phf1_distance.R	phf1_v2/plots/reactome_stress_death_vs_phf1_distance_1000um/
