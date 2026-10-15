@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # deg_dream_linear_distance_depth_phf1.r
 #
-# Figure panels: S1B
+# Figure panels: S3B
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -29,7 +29,7 @@
 # ---
 # A sensitivity analysis asking whether the distance gradient survives conditioning
 # on large-scale position within the section. It is the CosMx counterpart of the IMC
-# depth ladder in imc_covariate_sensitivity.R (Figure S8A), which standardises
+# depth ladder in imc_covariate_sensitivity.R (Figure S6A-C), which standardises
 # depth within the modelled cell set and reports it as a labelled sensitivity.
 # docs/MODELS.md lists depth_rel among the image-derived covariates "used as
 # labelled sensitivities", so no model specification changes.
@@ -53,11 +53,10 @@
 # --------------------------
 # Set 1 carries no depth term, and docs/MODELS.md (Set 3) lists scaled_Y/depth_s as a
 # sensitivity term, never in a headline. This script is a labelled sensitivity
-# (Fig. S1B), as depth is in IMC Set 3.
+# (Fig. S3B), as depth is in IMC Set 3.
 #
 # It writes ONLY to deg/de_linear_distance_depth*/ (enforced by a stopifnot on
-# dir_tag below) and never to deg/de_linear_distance/, which backs Fig. 3A, 3B
-# and 4C-E.
+# dir_tag below) and never to deg/de_linear_distance/, which backs Fig. 3D, 3E.
 #
 # With --log_distance the distance predictor becomes log(dist_to_phf1_um)
 # scaled to SD units. This is biologically motivated when the effect is
@@ -111,7 +110,7 @@
 # diagnostics probe for one and report its absence, and depth_s is derived from
 # coordinates rather than from any such column.
 #
-# Use run_deg_linear_distance_depth.sh (canonical 5%, one job per celltype).
+# Run once per celltype (canonical 5% detection threshold).
 # The contrast against the unadjusted parent run is collate_depth_covariate.r.
 
 ##  ............................................................................
@@ -519,7 +518,7 @@ stopifnot(
 )
 
 # Standardised within the modelled cell set, matching imc_covariate_sensitivity.R
-# (Figure S8A). A linear rescaling of a frozen quantity, so it cannot move the
+# (Figure S6A-C). A linear rescaling of a frozen quantity, so it cannot move the
 # distance coefficient or its p-value -- only depth_s's own units.
 depth_rel_sd <- sd(cd$depth_rel, na.rm = TRUE)
 if (!isTRUE(depth_rel_sd > 0))
@@ -792,7 +791,7 @@ cat("Significant genes (padj < 0.1):",  sum(res$padj < 0.1,  na.rm = TRUE), "\n"
 # quantities that would move if the cell set had changed.
 if (nzchar(args$parent_results)) {
   # Accept either the parent results DIRECTORY or the celltype's TSV directly --
-  # run_deg_linear_distance_fov.sh passes a file, so both conventions are in use.
+  # both conventions are accepted.
   parent_file <- if (grepl("\\.tsv$", args$parent_results)) {
     args$parent_results
   } else {
@@ -870,7 +869,7 @@ cat("\n")
 ##  ............................................................................
 ##  Predict fitted expression curves across a distance grid                ####
 # Write _spline_joint_F.tsv and _spline_predictions.tsv in the same format
-# as deg_dream_spline_distance_phf1.r for downstream compatibility.
+# as the other distance-DEG outputs, for downstream compatibility.
 
 SIG_THRESHOLD <- 0.1
 

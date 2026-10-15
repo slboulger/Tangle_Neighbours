@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # plot_dotplot_pathway_linear_distance_phf1.r
 #
-# Figure panels: 3B
+# Figure panels: 3E
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

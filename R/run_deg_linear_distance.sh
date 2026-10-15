@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # run_deg_linear_distance.sh
 #
-# Figure panels: S1A; Table S8
+# Figure panels: S3A; Table S8
 # Runs the exclusion-radius sweep (10, 20, 30, 50 um) of deg_dream_linear_distance_phf1.r
 # that collate_exclusion_radius.r collates.
 #

@@ -864,7 +864,7 @@ run_ct_decay <- function(ct, df_full_all, ref, sg) {
   df <- if (is.finite(MAX_DIST)) df_full_all[df_full_all$dist_to_phf1_um <= MAX_DIST, ]
         else df_full_all
   df <- df[is.finite(df$dist_to_phf1_um) & !is.na(df[[m]]), ]
-  # Canonical guard (as in R/nn3_over_phf1_distance.R): every modelled PHF1-negative
+  # Canonical guard: every modelled PHF1-negative
   # cell must sit at a strictly positive distance -- the log-linear competitor in the
   # model comparison needs it, and a zero would mean a PHF1+ cell leaked in.
   if (any(df$dist_to_phf1_um <= 0))

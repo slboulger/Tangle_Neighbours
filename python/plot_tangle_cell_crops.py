@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # plot_tangle_cell_crops.py
 #
-# Figure panels: 2C, 2D
+# Figure panels: 2E, 2F
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

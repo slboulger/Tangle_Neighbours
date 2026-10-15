@@ -2,9 +2,10 @@
 # ---------------------------------------------------------------------------
 # nn3_phf1_vs_neg.R
 #
-# Figure panels: S3 (all) - first step of run_nn3.sh
-# Also writes the per-neuron covariate cache
-# (plots/nn3_neuron_spacing/source_data_nn3_cells.tsv) read by the 5C and S7B scripts.
+# Figure panels: 5C, S5B - upstream step (per-neuron covariate cache)
+# Writes the per-neuron covariate cache
+# (plots/nn3_neuron_spacing/source_data_nn3_cells.tsv) read by the 5C and S5B scripts.
+# The 3-NN spacing contrast it also computes is not a figure panel.
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -57,14 +58,10 @@
 # rho(nn3_um, edge_dist_um_raw) = +0.03, and only ~5% of neurons sit within
 # 100 um of an unimaged region.
 #
-# WHY NO PERMUTATION NULL HERE. The 1000-labelling null is a SUPPLEMENTARY
-# analysis in R/null_replica_nn3.R; the primary models carry model-based
-# inference only.
-#
 # Outputs, under plots/nn3_neuron_spacing/:
 #   source_data_nn3_cells.tsv                  SHARED CACHE -- one row per pool
-#                                              neuron, read by nn3_over_phf1_distance.R
-#                                              and null_replica_nn3.R so neither
+#                                              neuron, read by phf1_channel_intensity_exc.R
+#                                              and phf1_distance_morphology_exc.R so neither
 #                                              re-reads the 327 MB SCE.
 #   plot_nn3_phf1_vs_neg.pdf                   pooled, donor means overlaid
 #   source_data_nn3_phf1_vs_neg.tsv            drawn cells
@@ -598,8 +595,7 @@ cat("estimate weight by information.\n")
 cat(sprintf("Celltype-adjusted vs unadjusted cell-level fit: %+.2f%% vs %+.2f%%.\n",
             es$pct_diff, es$pct_diff_unadj))
 cat("PHF1 status is a WITHIN-donor predictor, so a random intercept on sample_id is the correct\n")
-cat("specification; the supplementary label-permutation null in R/null_replica_nn3.R checks its\n")
-cat("calibration.\n")
+cat("specification.\n")
 cat("\n--- Sensitivity fits (all as % difference, PHF1+ vs PHF1-) ---\n")
 cat(sprintf("  depth-adjusted        : %+.2f%%  p = %.3g\n", es$pct_diff_depth_adj, es$p_depth_adj))
 cat(sprintf("  unadjusted            : %+.2f%%  p = %.3g\n", es$pct_diff_unadj, es$p_unadj))
@@ -624,8 +620,6 @@ cat("   diagnostics above for how mild it is.\n")
 cat(" - PHF1+ neurons are strongly layer- and subtype-biased, so the celltype term in the\n")
 cat("   headline model is load-bearing. Compare it against the unadjusted fit above.\n")
 cat(" - n = 3 donors per Braak stage; the interaction is underpowered and descriptive.\n")
-cat(" - The supplementary permutation null is R/null_replica_nn3.R and is deliberately NOT\n")
-cat("   part of this primary analysis.\n")
 cat("\n=== sessionInfo() ===\n"); print(sessionInfo())
 sink()
 

@@ -16,8 +16,8 @@
 #   AT8-positive neurons, UP and DOWN) from the paper's supplementary workbook, resolving
 #   symbols against the CosMx 6k panel so the sets can be scored on this data.
 #
-#   Used as the external comparator signature in Figure 4B and Figure S4, and as the
-#   reference set for the overlap test reported with Table S9.
+#   Scored in Figures 2D, 3B and S1 (and highlighted in the 2E crops); listed in
+#   Table S9.
 #
 # INPUTS   OteroGarcia2026_S6.xlsx (supplementary table of the source publication)
 # OUTPUTS  otero_signatures/otero_at8_signatures.tsv and .rds

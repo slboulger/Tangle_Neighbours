@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_amyloid_tangle_coupling.R
 #
-# Figure panels: S8D, S8E
+# Figure panels: S6D, S6E
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -22,14 +22,14 @@
 #   delta  = coupling of plaque proximity to tangle distance
 #              (how much more likely is a cell to sit in the amyloid niche when it is near a tangle)
 #   gamma  = the plaque effect on the outcome
-#              (the 40 um term in the Figure S8A ladder, m3_plaque; already on disk)
+#              (the 40 um term in the Figure S6A-C ladder, m3_plaque; already on disk)
 #   gamma x delta = the bias in the tangle coefficient from omitting amyloid
 #
 # and then asks the question the product cannot answer: does the gradient survive WHERE THERE IS NO
 # AMYLOID? That is the `dist_z * plaque` stratified refit, whose PLAQUE-DISTAL simple slope is the
 # actual test. The interaction is reported whether or not it is significant.
 #
-# NOTHING EXISTING IS MODIFIED. plots/imc_covariate_sensitivity/ (Figure S8A) is read as input and
+# NOTHING EXISTING IS MODIFIED. plots/imc_covariate_sensitivity/ (Figure S6A-C) is read as input and
 # as a regression check. This script only writes plots/imc_amyloid_tangle_coupling/.
 #
 # ===================================================================================================
@@ -150,7 +150,7 @@ VULN_CLUSTERS <- c("Excitatory neuron cluster 4 (RELN)",
 MICRO <- c("Microglia cluster 1 (IBA1)", "Microglia cluster 2 (IBA1, CD68)")
 ASTRO <- c("Astrocyte cluster 1 (GFAP, S100b)", "Astrocyte cluster 2 (S100b)")
 
-# Okabe-Ito, reusing the Figure S8A covariate-axis colours so these figures read against that one.
+# Okabe-Ito, reusing the Figure S6A-C covariate-axis colours so these figures read against that one.
 COL_PROX   <- "#D55E00"   # vermillion    -- tau proximity
 COL_PLAQUE <- "#0072B2"   # blue          -- amyloid proximity
 COL_DEPTH  <- "#009E73"   # bluish green  -- cortical depth
@@ -165,7 +165,7 @@ CM <- 1 / 2.54   # cm -> inches
 # TOL_REML is the PRACTICAL agreement between gamma*delta and the observed m1 -> m3 shift. The only
 #   source of discrepancy is REML re-estimating lambda when `plaque` enters, so b1 and b3 are
 #   computed under slightly different metrics. Measured worst case 0.01*SE(b1); 0.05 is a 5x margin.
-# TOL_LADDER checks the refitted coefficients against the on-disk Figure S8A ladder.
+# TOL_LADDER checks the refitted coefficients against the on-disk Figure S6A-C ladder.
 # TOL_DELTA_REL is a loose sanity check against the reference deltas in EXPECTED_DELTA; it is
 #   loose on purpose, because those came from a run whose lambda choice may differ in the last
 #   digits. The algebra is pinned by TOL_ALG, not by this.
@@ -181,7 +181,7 @@ EXPECTED_DELTA <- c(dist_reln_calb1          = -0.018161,
                     gfap_astrocytes_distance = -0.0259400)
 
 LADDER_TSV <- "plots/imc_covariate_sensitivity/stats_covariate_ladder.tsv"
-if (!file.exists(LADDER_TSV)) stop("Figure S8A ladder not found: ", LADDER_TSV,
+if (!file.exists(LADDER_TSV)) stop("Figure S6A-C ladder not found: ", LADDER_TSV,
                                    "\nRun R/imc_covariate_sensitivity.R first.")
 ladder <- read.delim(LADDER_TSV, stringsAsFactors = FALSE)
 
@@ -211,7 +211,7 @@ EM <- assay(spe, "exprs")
 # ===================================================================
 # Cells. Copied verbatim from imc_covariate_sensitivity.R, which in turn copies it from the origin
 # script of each panel. The REGRESSION CHECK below refuses to proceed unless the rebuilt cell sets
-# reproduce the on-disk Figure S8A coefficients.
+# reproduce the on-disk Figure S6A-C coefficients.
 # ===================================================================
 cd <- as.data.frame(colData(spe))
 cd$cell_id <- colnames(spe)
@@ -332,7 +332,7 @@ prep_glia <- function(md, mk) {
 }
 
 # ===================================================================
-# Panel table -- the FOUR DISTANCE panels of Figure S8A. The three state_* panels are excluded on
+# Panel table -- the FOUR DISTANCE panels of Figure S6A-C. The three state_* panels are excluded on
 # purpose: their predictor is PHF1+/- status, so the analogous delta would be plaque ~ grp, a
 # different estimand, and "bias in the tangle-DISTANCE coefficient" is not defined for them.
 # `flip` = -1 throughout, i.e. the reported beta_closer = -beta(dist_z), per s.d. NEARER a tangle.
@@ -438,7 +438,7 @@ grab <- function(m, term) {
 }
 
 # ===================================================================
-# PART 0 -- REGRESSION CHECK. Refit the Figure S8A rungs on the rebuilt cell sets and require them
+# PART 0 -- REGRESSION CHECK. Refit the Figure S6A-C rungs on the rebuilt cell sets and require them
 # to reproduce the on-disk coefficients. If m1/m3 do not reproduce, the cell set was rebuilt wrongly
 # and every number downstream is meaningless, so this STOPS rather than warns.
 # ===================================================================
@@ -937,7 +937,7 @@ cat("=== Amyloid-tangle coupling and the omitted-amyloid bias in the IMC distanc
 cat("Script : R/imc_amyloid_tangle_coupling.R\n")
 cat("Run    : ", format(Sys.time()), "\n", sep = "")
 cat("Object : ", localwd, "spe.rds\n", sep = "")
-cat("Input  : ", LADDER_TSV, " (Figure S8A)\n", sep = "")
+cat("Input  : ", LADDER_TSV, " (Figure S6A-C)\n", sep = "")
 cat("Panels : ", paste(names(PANELS), collapse = ", "), "\n\n", sep = "")
 
 cat("--- The question -------------------------------------------------------------\n")
@@ -954,7 +954,7 @@ cat("67-donor / 195-ROI object. Panels land at 43-44 donors / 129-131 ROIs becau
 cat("no PHF1+ neuron anchor drop out. Per-panel n is tabulated below.\n")
 cat("Distance: cap ", MAX_DIST, " um, transform log(dist_um)/sd(log(dist_um)), sd within cell set.\n\n", sep = "")
 
-cat("--- PART 0: regression check against Figure S8A ------------------------------\n")
+cat("--- PART 0: regression check against Figure S6A-C ------------------------------\n")
 cat("The cell-set construction is copied from R/imc_covariate_sensitivity.R, so it is only\n")
 cat("trustworthy if it reproduces that script's coefficients. It does:\n")
 cat("  fits checked      : ", nrow(regchk), "\n", sep = "")
@@ -1037,7 +1037,7 @@ cat("distinct dist_z scalings here (the two glia panels SHARE one DIST_SD_GLIA =
     fmt(DIST_SD_GLIA, 5), ").\n\n", sep = "")
 
 cat("--- PART 2: gamma x delta, the bias --------------------------------------------\n")
-cat("gamma is the `plaqueplaque-prox` coefficient of m3_plaque (Figure S8A); delta is delta_lpm\n")
+cat("gamma is the `plaqueplaque-prox` coefficient of m3_plaque (Figure S6A-C); delta is delta_lpm\n")
 cat("above; their product is the bias in the tangle coefficient from omitting amyloid.\n\n")
 cat("ASSERTED, NOT CLAIMED. Two tiers:\n")
 cat("  tier 1 (algebraic) everything evaluated at ONE lambda by whitened GLS, where GLS is OLS and\n")
@@ -1125,7 +1125,7 @@ cat("the reference level. Simple slopes are computed from the fixed-effect vcov 
 cat("reference; emmeans silently drops to asymptotic z above 3,000 observations anyway, and at df\n")
 cat("in the thousands z and t differ in the fifth decimal. Cross-checked against\n")
 cat("emmeans::emtrends on ", ck_panel, " (max abs diff ", signif(emm_check, 3), ").\n", sep = "")
-cat("BH within panel across outcomes, per term -- matching Figure S8A. Not pooled across panels:\n")
+cat("BH within panel across outcomes, per term -- matching Figure S6A-C. Not pooled across panels:\n")
 cat("different cell sets, different scalings, and dist_reln_calb1 is a SUBSET of the exc panel.\n\n")
 cat("Reported on the beta_closer scale (per s.d. NEARER a tangle), as the published panels are.\n\n")
 it <- inter_bc %>% arrange(panel, interaction_padj) %>%
@@ -1198,7 +1198,7 @@ cat("4. The near/far bands sit on the same spatial scale as the 40 um dilation (
     " um) and\n", sep = "")
 cat("   close to the distance cap (>=", FAR_UM, " um, cap ", MAX_DIST,
     " um), so the far band is a censored tail.\n", sep = "")
-cat("5. `plaque` is a Set 3 sensitivity term; the Figure S8A models are not modified -- this\n")
+cat("5. `plaque` is a Set 3 sensitivity term; the Figure S6A-C models are not modified -- this\n")
 cat("   script writes only to ", out_dir, "/.\n", sep = "")
 
 cat("\n--- Outputs -------------------------------------------------------------------\n")

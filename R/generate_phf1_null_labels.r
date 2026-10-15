@@ -31,11 +31,10 @@
 # nulls are mutually consistent):
 #   1. phf1_label_permutations.qs  — cell_id x (1 + n_perm) LOGICAL matrix.
 #         col "observed" = real PHF1 (== "TRUE"); cols null0001..nullNNNN = shuffled.
-#         Consumed by R/null_replica_nn3.R.
 #   2. phf1_null_distance_matrix.qs — cell_id x (1 + n_perm) NUMERIC matrix.
 #         Distance (um) to nearest PHF1+ neuron under each labelling; NA where the
 #         cell is PHF1+ under that labelling (i.e. not in the modelling set).
-#         Consumed by R/null_replica_nn3.R and R/null_glia_distance_within_celltype.R.
+#         Consumed by R/null_glia_distance_within_celltype.R.
 #
 # Distances are computed through the SAME helper the canonical observed pipeline
 # uses (compute_dist_to_phf1_um in phf1_distance_utils.r, source_idx_override = NULL,

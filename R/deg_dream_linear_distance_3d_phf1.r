@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # deg_dream_linear_distance_3d_phf1.r
 #
-# Figure panels: S1C
+# Figure panels: S3C
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -33,7 +33,7 @@
 # against the augmented set through the SAME compute_dist_to_phf1_um().
 # The unseen-plane tables (t3_unseen_plane_anchors() in R/tangle_3d_utils.R)
 # are passed in the same way; run_deg_linear_distance_3d.sh uses those for
-# Fig. S1C.
+# Fig. S3C.
 #
 # ----------------------------------------------------------------------------
 # HOW TO READ THE OUTPUT
@@ -125,8 +125,7 @@
 # in the CosMx colData; the radius diagnostics probe for one, report its absence,
 # and skip.
 #
-# Use run_deg_linear_distance.sh (canonical 5%, celltype x radius array)
-#  or run_deg_linear_distance_pct.sh (alternative threshold)
+# Use run_deg_linear_distance_3d.sh.
 
 ##  ............................................................................
 ##  Load packages                                                           ####
@@ -728,7 +727,7 @@ cat("Significant genes (padj < 0.1):",  sum(res$padj < 0.1,  na.rm = TRUE), "\n"
 ##  ............................................................................
 ##  Predict fitted expression curves across a distance grid                ####
 # Write _spline_joint_F.tsv and _spline_predictions.tsv in the same format
-# as deg_dream_spline_distance_phf1.r for downstream compatibility.
+# as the other distance-DEG outputs, for downstream compatibility.
 
 SIG_THRESHOLD <- 0.1
 

@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # run_deg_linear_distance_3d.sh
 #
-# Figure panels: S1C
+# Figure panels: S3C
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

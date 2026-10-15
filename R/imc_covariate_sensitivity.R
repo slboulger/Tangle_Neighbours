@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_covariate_sensitivity.R
 #
-# Figure panels: S8A, S8B, S8C
+# Figure panels: S6A, S6B, S6C
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # collate_exclusion_radius.r
 #
-# Figure panels: S1A
+# Figure panels: S3A; Table S8
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

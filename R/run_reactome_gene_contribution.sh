@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # run_reactome_gene_contribution.sh
 #
-# Figure panels: S2B
+# Figure panels: S4B
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

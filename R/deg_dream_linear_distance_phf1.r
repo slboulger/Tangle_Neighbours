@@ -70,8 +70,7 @@
 # in the CosMx colData; the radius diagnostics probe for one, report its absence,
 # and skip.
 #
-# Use run_deg_linear_distance.sh (canonical 5%, celltype x radius array)
-#  or run_deg_linear_distance_pct.sh (alternative threshold)
+# Use run_deg_linear_distance.sh (canonical 5%, celltype x radius array).
 
 ##  ............................................................................
 ##  Load packages                                                           ####

@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # plot_reactome_stress_death_vs_phf1_distance.R
 #
-# Figure panels: 3C, 3D, S2A, S9A, S9B, S9C, S9D, S9E, S9F
+# Figure panels: 3F, 3G, S4A, S7A, S7B, S7C, S7D, S7E, S7F
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -997,8 +997,8 @@ run_group <- function(ct, group, mdf) {
     sub$score <- df[[m]]
     obs <- fit_obs_lmer(sub)
     if (is.null(obs)) { cat("  [warn] LMM failed for ", m, "\n", sep = ""); next }
-    # Cohen's d: estimate / sqrt(all random-effect variances + residual). Same idiom as
-    # R/imc_phf1_morphology_exc.R (drop the covariance rows: is.na(var2)).
+    # Cohen's d: estimate / sqrt(all random-effect variances + residual). Covariance rows
+    # are dropped (is.na(var2)).
     vc     <- as.data.frame(lme4::VarCorr(obs$model))
     sd_tot <- sqrt(sum(vc$vcov[is.na(vc$var2)]))
     rows[[m]] <- tibble(

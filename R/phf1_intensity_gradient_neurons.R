@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # phf1_intensity_gradient_neurons.R
 #
-# Figure panels: 4A
+# Figure panels: 3A
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

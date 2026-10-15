@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # plot_seg_control_composite_matched.R
 #
-# Figure panels: S5A-C
+# Figure panels: S2A-C
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -38,7 +38,7 @@
 #   Astro                    vs the Cameron astrocyte SUBCLUSTERS (pooled not used)
 #     --astro_source serrano : Astro vs the Serrano-Pozo 2024 states instead (from
 #     R/plot_serrano_astro_vs_phf1_distance_modelp.R), written to
-#     plots/seg_control_paper_serrano/ so Fig. S5 is untouched. Only the Astro axis span
+#     plots/seg_control_paper_serrano/ so the default output is untouched. Only the Astro axis span
 #     and the Astro margin rows change; CBLN2 and Micro are identical.
 #
 # THE CONTROL AS A BENCHMARK  the reported gradients are 7.5-48x the SEG slope in the
@@ -84,16 +84,24 @@ parser$add_argument("--output_dir", default = NULL,
   help = paste("Default plots/seg_control_paper (cameron) or",
                "plots/seg_control_paper_serrano (serrano), so the S5 figure is never overwritten"))
 parser$add_argument("--max_dist_um", type = "double", default = 1000)
-# Which reported astrocyte panel the Astro SEG axis is matched to. cameron = Fig. S5 as
+# Which reported astrocyte panel the Astro SEG axis is matched to. cameron = the Cameron subclusters as
 # published; serrano = the Serrano-Pozo 2024 states from
 # R/plot_serrano_astro_vs_phf1_distance_modelp.R (astMic/astNeu excluded there).
 parser$add_argument("--astro_source", default = "cameron", choices = c("cameron", "serrano"))
 parser$add_argument("--serrano_dir",
   default = "plots/module_score_serrano_astro_vs_phf1_distance_modelp_1000um")
+# Which reported CBLN2 series set the CBLN2 SEG axis span (and the CBLN2 margin rows).
+# both  = PHF1 signature + Otero-Garcia Exc1/2 UP (default);
+# otero = Otero-Garcia Exc1/2 UP only, as drawn in Fig. 3B and Fig. S2A. Writes to
+#         <default dir>_otero. Run: --astro_source serrano --cbln2_series otero
+parser$add_argument("--cbln2_series", default = "both", choices = c("both", "otero"))
 args <- parser$parse_args()
-if (is.null(args$output_dir))
+if (is.null(args$output_dir)) {
   args$output_dir <- if (args$astro_source == "serrano") "plots/seg_control_paper_serrano" else
     "plots/seg_control_paper"
+  if (args$cbln2_series == "otero") args$output_dir <- paste0(args$output_dir, "_otero")
+}
+OTERO_LAB <- "Otero-Garcia Exc1/2 UP"
 dir.create(args$output_dir, recursive = TRUE, showWarnings = FALSE)
 
 ASTRO <- switch(args$astro_source,
@@ -113,7 +121,8 @@ need <- function(p) { if (!file.exists(p)) stop("missing input: ", p, call. = FA
 ##  Panel definitions - the three figure panels                              ####
 PANELS <- list(
   list(ct = "Exc-IT-L2-3-CBLN2-HOPX", label = "Exc-IT-L2-3-CBLN2-HOPX",
-       reported_source = "intensity-adjusted (PHF1, Otero-Garcia Exc1/2 UP)"),
+       reported_source = if (args$cbln2_series == "otero") "intensity-adjusted (Otero-Garcia Exc1/2 UP)" else
+         "intensity-adjusted (PHF1, Otero-Garcia Exc1/2 UP)"),
   list(ct = "Micro", label = "Micro", reported_source = "Mancuso microglial states"),
   list(ct = "Astro", label = "Astro", reported_source = ASTRO$label)
 )
@@ -126,6 +135,7 @@ adj_roll <- read.delim(need(file.path(args$adjust_dir,
   "source_data_distance_intensity_adjust_combined_Exc-IT-L2-3-CBLN2-HOPX_rollmean.tsv")),
   stringsAsFactors = FALSE)
 adj_roll <- adj_roll[grepl("\\(adjusted\\)", adj_roll$key), ]
+if (args$cbln2_series == "otero") adj_roll <- adj_roll[adj_roll$key == paste(OTERO_LAB, "(adjusted)"), ]
 stopifnot("no '(adjusted)' series found in the CBLN2 combined rollmean" = nrow(adj_roll) > 0)
 
 micro_roll <- read.delim(need(file.path(args$glia_dir,
@@ -178,7 +188,8 @@ SEG_PADJ  <- setNames(seg_coef$lmm_padj,     seg_coef$celltype)
 # (dist_slope_adj_ci_lo/_ci_hi in the summary), so it is read directly and no join is
 # needed; the unadjusted slope and its CI are carried alongside for reference.
 rep_rows <- bind_rows(
-  adj_sum %>% filter(celltype == "Exc-IT-L2-3-CBLN2-HOPX") %>%
+  adj_sum %>% filter(celltype == "Exc-IT-L2-3-CBLN2-HOPX",
+                     args$cbln2_series == "both" | sig_label == OTERO_LAB) %>%
     transmute(celltype, module = sig_label, reported_model = "intensity-adjusted LMM (log dist)",
               slope_per_sd = dist_slope_adj,
               ci_lo_per_sd = dist_slope_adj_ci_lo, ci_hi_per_sd = dist_slope_adj_ci_hi,
@@ -315,7 +326,7 @@ if (args$astro_source == "cameron") {
   cat("  ", args$glia_dir, " (Mancuso Micro)\n", sep = "")
   cat("  ", ASTRO$dir, " (Serrano-Pozo Astro states; astMic/astNeu excluded upstream)\n", sep = "")
   cat("  ASTRO VARIANT (--astro_source serrano): the Astro axis span and the Astro margin rows\n")
-  cat("  come from the Serrano-Pozo states instead of the Cameron subclusters (Fig. S5).\n")
+  cat("  come from the Serrano-Pozo states instead of the Cameron subclusters.\n")
 }
 cat("  ", args$adjust_dir, " (intensity-adjusted CBLN2 arm)\n\n", sep = "")
 

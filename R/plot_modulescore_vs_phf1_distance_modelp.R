@@ -857,7 +857,7 @@ run_group_decay <- function(gdef) {
   df_full <- DF_BY_NAME[[gdef$df_name]]
   df <- if (is.finite(MAX_DIST)) df_full[df_full$dist_to_phf1_um <= MAX_DIST, ] else df_full
   df <- df[is.finite(df$dist_to_phf1_um), ]
-  # Canonical guard (as in R/nn3_over_phf1_distance.R): the log-linear competitor in
+  # Canonical guard: the log-linear competitor in
   # the model comparison needs dist > 0.
   if (any(df$dist_to_phf1_um <= 0))
     stop("Non-positive dist_to_phf1_um in the decay fit for ", group, "/", ct, ".")

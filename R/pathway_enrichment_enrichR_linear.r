@@ -30,7 +30,6 @@
 #'   <ct_dir>/enrichr/DOWN/
 #'     (same)
 #'
-#' Adapted minimally from pathway_enrichment_enrichR_with_background.r
 ################################################################################
 
 library(tidyverse)
@@ -61,7 +60,7 @@ ENRICHMENT_DATABASES <- c(
   # "KEGG_2021_Human"
 )
 
-# ---- Helper functions (as in pathway_enrichment_enrichR_with_background.r) ---
+# ---- Helper functions ----------------------------------------------------------
 
 format_res_table_enrichr <- function(res, min_size = 15, max_size = 250, min_overlap = 3) {
   res_table <- res %>% as.data.frame() %>%

@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # nDEG_by_celltype_linear.R
 #
-# Figure panels: 3A
+# Figure panels: 3D
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

@@ -22,8 +22,7 @@
 # DEG works with --ref_class FALSE. Cells with NA p95 (mask outside the IF image) -> FALSE,
 # mirroring how PHF1 treats non-positive cells.
 #
-# Run after add_phf1_intensity.R (needs phf1_intensity_p95). Then in run_pb_deg_category.sh
-# just change  --dependent_var PHF1  ->  --dependent_var phf1_p95_pos_5mad  (keep --ref_class FALSE).
+# Run after add_phf1_intensity.R (needs phf1_intensity_p95).
 
 suppressPackageStartupMessages({
   library(Seurat); library(SingleCellExperiment); library(dplyr); library(tibble); library(qs)

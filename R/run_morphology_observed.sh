@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # run_morphology_observed.sh
 #
-# Figure panels: 5C, S7B
+# Figure panels: 5C, S5B
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

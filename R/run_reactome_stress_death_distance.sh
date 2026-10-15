@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # run_reactome_stress_death_distance.sh
 #
-# Figure panels: 3C
+# Figure panels: 3F
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

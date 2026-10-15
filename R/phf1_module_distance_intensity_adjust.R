@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # phf1_module_distance_intensity_adjust.R
 #
-# Figure panels: 4B, S4A, S4B, S4C, S4D, S4E
+# Figure panels: S1A, S1B, S1C; upstream of 3B and S2A
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

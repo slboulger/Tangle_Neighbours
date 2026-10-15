@@ -13,7 +13,7 @@
 # ---------------------------------------------------------------------------
 # plot_serrano_astro_vs_phf1_distance_modelp.R
 #
-# The Cameron astrocyte-subcluster panel (Fig. 6b; cameron_subclusters x Astro x log in
+# The Cameron astrocyte-subcluster panel (cameron_subclusters x Astro x log in
 # R/plot_modulescore_vs_phf1_distance_modelp.R) re-run with the Serrano-Pozo et al. 2024
 # (Nat Neurosci) human astrocyte state markers in place of Cameron_2024.
 #
@@ -29,18 +29,18 @@
 #                  them as doublet artefacts, not astrocyte states.
 #   * group name : serrano_states       (file names: ..._serrano_states_Astro_...)
 #   * legend     : "Serrano-Pozo Astro"
-#   * output dir : its own, so the Fig. 6b run directory and its shared tables are untouched.
+#   * output dir : its own, so the Cameron run directory and its shared tables are untouched.
 #
 # The parent script's model is Set 1:
 #   score ~ log(dist)_scaled + nUMI_log + percent_neg + Sex + Age + PMI + (1|sample_id)
 #   dist_scaled = log(dist_to_phf1_um) / sd(log(dist_to_phf1_um)), within Astro, within cap.
 #
-# Model types: "log" only (the reported fit, = Fig. 6b). "decay" is NOT run here: it is gated
+# Model types: "log" only (the reported fit, Fig. 6B). "decay" is NOT run here: it is gated
 # on the log model and needs the SEG baseline scoring. Also written, as in the parent: the raw
 # model-free rolling mean overlay and the per-donor rolling-mean view.
 #
 # OUTPUT, under --output_dir:
-#   plot_modulescore_dist_serrano_states_Astro_log.pdf                 -- the Fig. 6b analogue
+#   plot_modulescore_dist_serrano_states_Astro_log.pdf                 -- Fig. 6B
 #   source_data_modulescore_dist_serrano_states_Astro_log_fit.tsv
 #   source_data_modulescore_dist_serrano_states_Astro_log_persample.tsv
 #   stats_modulescore_dist_serrano_states_Astro_log.txt
@@ -345,7 +345,7 @@ x_cap_of <- function(df) if (is.finite(MAX_DIST)) MAX_DIST else
   as.numeric(quantile(df$dist_to_phf1_um, 0.99))
 
 ##  ............................................................................
-##  Log-distance LMM per module (= Fig. 6b model)                           ####
+##  Log-distance LMM per module (Fig. 6B model)                           ####
 cat(sprintf("\n=== %s / %s  (model: log_um%s) ===\n", GROUP, CT,
             if (is.finite(MAX_DIST)) sprintf(", <=%gum", MAX_DIST) else ""))
 df_full <- astro_df
@@ -458,7 +458,7 @@ cat("Gene sets: Serrano-Pozo et al. 2024 Nat Neurosci astrocyte states, from", a
 cat("States excluded before scoring (described in the paper as doublet artefacts):",
     if (length(EXCLUDED)) paste(EXCLUDED, collapse = ", ") else "none", "\n")
 cat("  BH correction is therefore across the", length(MODULES), "analysed states only.\n")
-cat("Everything else is identical to the Cameron panel (Fig. 6b) in\n")
+cat("Everything else is identical to the Cameron run in\n")
 cat("  R/plot_modulescore_vs_phf1_distance_modelp.R (Set 1, docs/MODELS.md).\n")
 cat("Date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n\n")
 cat("LMM (log distance) (per module):\n")

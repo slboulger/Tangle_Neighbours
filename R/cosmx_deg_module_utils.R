@@ -20,7 +20,7 @@
 #
 # Pure functions only - no argparse, no setwd(), no file writing at load time.
 # Sourced by:
-#   R/build_cosmx_deg_modules.R   the CLI that writes the sets to disk
+#   R/prepare_fig2_contrast_genesets.R   (expand_probe_names(), probe-level panel matching)
 #
 # ---------------------------------------------------------------------------
 # THE TWO SOURCE TABLES, AND WHY THEY ARE NOT INTERCHANGEABLE
@@ -305,7 +305,7 @@ read_module_geneset <- function(out_dir, celltype, set, n) {
   f <- module_geneset_path(out_dir, celltype, set, n)
   if (!file.exists(f))
     stop("module geneset not found: ", f,
-         "\n  Run R/build_cosmx_deg_modules.R first.", call. = FALSE)
+         "\n  Build the DEG-derived module sets first.", call. = FALSE)
   g <- trimws(readLines(f))
   unique(g[nzchar(g)])
 }
@@ -315,7 +315,7 @@ read_seg_draws <- function(out_dir, celltype, n) {
   f <- seg_draws_path(out_dir, celltype)
   if (!file.exists(f))
     stop("SEG draw table not found: ", f,
-         "\n  Run R/build_cosmx_deg_modules.R first.", call. = FALSE)
+         "\n  Build the DEG-derived module sets first.", call. = FALSE)
   d <- utils::read.delim(f, stringsAsFactors = FALSE)
   d <- d[d$N == n, , drop = FALSE]
   if (nrow(d) == 0)

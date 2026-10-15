@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # prepare_seg_geneset_reference.R
 #
-# Figure panels: S5A-C - upstream step
+# Figure panels: S2A-C - upstream step
 # Builds the stably expressed gene reference (seg_control/Reference_SEG_panel.qs)
 # used as the negative-control module.
 #

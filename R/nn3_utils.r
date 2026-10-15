@@ -19,9 +19,8 @@
 #
 # Deliberately mirrors the design of R/phf1_distance_utils.r: the metric lives in
 # ONE place so that
-#   * R/nn3_phf1_vs_neg.R        (Analysis A, cell-autonomous)
-#   * R/nn3_over_phf1_distance.R (Analysis B, non-cell-autonomous)
-#   * R/null_replica_nn3.R       (supplementary permutation null)
+#   * R/nn3_phf1_vs_neg.R        (per-neuron covariate cache, Figs 5C and S5B)
+#   * R/phf1_3d_distance.R and the 3D sensitivity arm (Fig. S3C)
 # compute it through one implementation and can never drift apart.
 #
 # ---------------------------------------------------------------------------
@@ -105,7 +104,7 @@ NEURON_POOL_10 <- c(
 ## of a neuron relative to other neurons, so it is defined for every pool cell
 ## and is INDEPENDENT OF PHF1 STATUS (PHF1+ neurons are in the pool, both as
 ## queries and as neighbours of others). That invariance is what makes the
-## label-permutation null in null_replica_nn3.R nearly free -- nn3_um does not
+## a label-permutation null nearly free -- nn3_um does not
 ## change when PHF1 labels are shuffled.
 ##
 ## Self-exclusion is done BY CELL INDEX, not by dropping column 1. A handful of

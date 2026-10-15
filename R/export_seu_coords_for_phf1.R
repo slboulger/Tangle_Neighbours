@@ -3,7 +3,7 @@
 # export_seu_coords_for_phf1.R
 #
 # Upstream pipeline - writes PHF1/seu_coords.csv, the per-cell coordinate table read
-# by the PHF1 image scripts (1E, 1F, 2C, 2D), the S1B/S1C sensitivity arms and the
+# by the PHF1 image scripts (1E, 1F, 2E, 2F), the S3B/S3C sensitivity arms and the
 # Table S3 builder
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial

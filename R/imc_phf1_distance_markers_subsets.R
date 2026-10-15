@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_phf1_distance_markers_subsets.R
 #
-# Figure panels: 3E
+# Figure panels: 3H
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -208,7 +208,7 @@ make_forest <- function(d) {
     geom_errorbar(aes(xmin = lo, xmax = hi), orientation = "y", width = 0, linewidth = 0.4) +
     geom_point(size = 1.7) +
     scale_colour_manual(values = c("padj < 0.05" = "#BD0026", "n.s." = "grey65"), name = NULL) +
-    labs(x = XLAB_LOG2FC, y = NULL) +
+    labs(x = XLAB_LOG2FC, y = "IMC protein marker") +
     theme_classic(base_size = 8) + fig_theme +
     theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
           legend.position = "top", plot.margin = margin(4, 8, 4, 4, unit = "pt"))

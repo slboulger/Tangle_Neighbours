@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_phf1_state_markers_subsets.R
 #
-# Figure panels: 2E - upstream step; also S8B
+# Figure panels: 2H - upstream step; also S6B
 # Writes the per-marker estimates (plots/imc_phf1_state_markers_subsets/) that
 # imc_phf1_state_markers_forest_panel.R draws and imc_covariate_sensitivity.R reads.
 #
@@ -26,8 +26,7 @@
 # REF is the like-for-like baseline for SUB: the two differ only by the subcluster term, so
 # REF vs SUB isolates it.
 #
-# Sex/Age/PMI match the CosMx counterpart deg_pb_category_phf1.r, whose default confounder set is
-# Age,Sex,PostMortemInterval, and the Set 3 specification (docs/MODELS.md).
+# Sex/Age/PMI follow the Set 3 specification (docs/MODELS.md).
 #
 # WHY THE SUBCLUSTER TERM MATTERS: PHF1+ and PHF1- cells are not drawn evenly from the four
 # excitatory subclusters, so a marker can separate the two groups simply because tangle-bearing

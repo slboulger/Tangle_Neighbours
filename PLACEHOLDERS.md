@@ -7,8 +7,8 @@ angle-bracket token. **No script will run until you substitute them.**
 |---|---|
 | `<PROJECT_ROOT>` | The analysis project directory — the folder holding `R/`, `plots/`, `deg/`, `phf1_v2/` and the Seurat/SCE objects. Most scripts call `setwd("<PROJECT_ROOT>/phf1_v2")`. |
 | `<RDS_ROOT>` | The storage root above the project (institutional RDS mount or its local equivalent). |
-| `<USER_DATA_ROOT>` | The per-user data directory under `<RDS_ROOT>` that contains the CosMx run folder and `EC_IMC_Project/`, the IMC image folder (`img/`, `DNA_Otsu_Masks/`, `regionprops/`) read by the Fig. 5D nucleus-crop scripts. |
-| `<IMC_ROOT>` | The directory holding the IMC SpatialExperiment `spe.rds`, read by every IMC script (Figs 2E, 3E, 5A, 5B, 5D, 6C, S7A, S8). See the README for where the object comes from. |
+| `<USER_DATA_ROOT>` | The per-user data directory under `<RDS_ROOT>` that contains the CosMx run folder and `EC_IMC_Project/`, the IMC image folder (`img/`, `DNA_Otsu_Masks/`, `regionprops/`) read by the Fig. 5D nucleus-crop scripts and the Fig. 2I image script. |
+| `<IMC_ROOT>` | The directory holding the IMC SpatialExperiment `spe.rds`, read by every IMC script (Figs 2H, 2I, 3H, 4A-D, 5A, 5B, 5D, 6C, S5A, S6). The Fig. 4 scripts also read `Figures/SupplementaryTable4_patient_percent_change.csv` and the Fig. 2I script `imc_cell_table.csv` from this directory. See the README for where the object comes from. |
 | `<EXTERNAL_GENESET_DIR>` | The shared snRNA-seq gene-set directory used by the glial module-score scripts. Read-only in the original environment. |
 | `<CONDA_ROOT>` | Conda/miniforge installation root; the analysis env is `dgenv`, the imaging env `spatial_env`. |
 

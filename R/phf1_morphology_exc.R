@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # phf1_morphology_exc.R
 #
-# Figure panels: S7B - companion analysis run by run_morphology_observed.sh
+# Figure panels: S5B - companion analysis run by run_morphology_observed.sh
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

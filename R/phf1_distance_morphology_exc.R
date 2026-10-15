@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # phf1_distance_morphology_exc.R
 #
-# Figure panels: S7B - companion analysis run by run_morphology_observed.sh
+# Figure panels: S5B - companion analysis run by run_morphology_observed.sh
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -16,7 +16,7 @@
 # NON-CELL-AUTONOMOUS question: does the cell/nucleus morphology of PHF1-NEGATIVE
 # Exc-IT-L2-3-CBLN2-HOPX neurons vary with distance to the nearest PHF1+ neuron?
 #
-# CosMx port of R/imc_phf1_distance_morphology_exc.R. The cell-autonomous counterpart
+# CosMx counterpart of the IMC morphology-over-distance analysis. The cell-autonomous counterpart
 # (PHF1+ vs PHF1- themselves) is R/phf1_morphology_exc.R -> plots/phf1_morphology/.
 # The one-panel figure combining both is R/phf1_morphology_dist_phf1_panel.R.
 # Local neuron density (n_local) is carried as a sensitivity covariate (density-adj).

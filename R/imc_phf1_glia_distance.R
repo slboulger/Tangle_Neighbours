@@ -60,7 +60,7 @@ WINDOW_UM   <- 75      # rolling-mean window WIDTH, matches plot_modulescore_vs_
 HALF_WINDOW <- WINDOW_UM / 2
 N_GRID      <- 200
 MIN_WINDOW_N <- 10     # do not draw a "mean" over fewer than 10 cells (as
-                       # phf1_intensity_gradient_neurons.R / nn3_over_phf1_distance.R do)
+                       # phf1_intensity_gradient_neurons.R does)
 # must reach MAX_DIST, else cut() silently NAs the outermost cells out of the ring tables
 # steps no coarser than 50 um all the way to the cap, matching brks in the marker/morphology
 # scripts -- a 100 um-wide final ring would dominate the supplementary per-sample table.

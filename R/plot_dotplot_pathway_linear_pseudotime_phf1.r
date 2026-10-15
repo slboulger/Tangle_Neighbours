@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
-# plot_dotplot_pathway_cat_phf1.r
+# plot_dotplot_pathway_linear_pseudotime_phf1.r
 #
-# Figure panels: 2B
+# Figure panels: 2G
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -11,16 +11,25 @@
 # Donor identifiers are UK Brain Banks Network (BBN) IDs, not brain-bank case IDs.
 # ---------------------------------------------------------------------------
 # =====================================================================
-# Dotplot of PHF1+ vs PHF1- enrichR pathway enrichment, ONE celltype.
+# Dotplot of pseudotime-DEG enrichR pathway enrichment, ONE celltype.
+# Copied from plot_dotplot_pathway_linear_distance_phf1.r (same layout, scales,
+# selection workflow and triple); only the input, the direction sign, the overlap
+# scale and the labels differ.
 #
-# Reads the per-celltype enrichR ORA results produced downstream of the
-# canonical categorical DEG (R/deg_pb_category_phf1.r), and draws a single
-# combined dotplot:
+# Reads the per-celltype enrichR ORA results of
+# R/pathway_enrichment_cbln2_trajectory.R, i.e. downstream of the cell-level
+# linear PSEUDOTIME DEG along the tangle-associated trajectory
+# (R/deg_dream_linear_pseudotime_phf1.r), and draws a single combined dotplot:
 #   y axis  = pathway (description), grouped into categories (one facet per
 #             group, with a small break between groups)
 #   x axis  = signed odds ratio  (UP pathways +, DOWN pathways -)
 #   size    = overlap  (n genes from the DEG list hitting the pathway)
 #   colour  = FDR
+#
+# Direction note (pseudotime DEG): pseudotime runs from the fewest-PHF1+ root to
+# the tangle-rich end, so the enrichR folders are DIRECT -- UP = rises toward the
+# tangle-rich end, DOWN = falls toward it. NO sign flip (unlike the distance
+# dotplot): positive odds ratio = enrichR UP folder.
 #
 # RUN INTERACTIVELY, ONE CELLTYPE AT A TIME:
 #   1. Edit the CONFIG block, then source PHASE 1. It prints the candidate
@@ -30,9 +39,8 @@
 #      Name the categories via `category_labels` in the CONFIG block. Save.
 #   3. Source PHASE 2 to draw the triple (PDF + source_data TSV + stats TXT).
 #
-# Only 7 celltypes have enrichR output:
-#   Astro, Exc-CT-L6-SYNPO2-SEMA3E, Exc-IT-L2-3-CBLN2-HOPX,
-#   Exc-IT-L3-5-CHGA-IL1RAPL2, Inh-VIP, Oligo, Unassigned
+# Celltypes with pseudotime enrichR output: Exc-IT-L2-3-CBLN2-HOPX, and
+# Exc-IT-L3-5-CHGA-IL1RAPL2 once its trajectory pipeline has run (R/run_traj_pipeline.sh).
 # =====================================================================
 
 suppressPackageStartupMessages({
@@ -45,12 +53,12 @@ source("R/palettes.R")  # exports: celltype_palette, braak_palette, neuron_order
 # ---------------------------------------------------------------------
 # CONFIG  -- edit per run
 # ---------------------------------------------------------------------
-celltype        <- "Exc-IT-L2-3-CBLN2-HOPX"   # set ONE celltype (see header for the 7 valid options)
+celltype        <- "Exc-IT-L2-3-CBLN2-HOPX"   # or "Exc-IT-L3-5-CHGA-IL1RAPL2" (see header)
 fdr_cap         <- 0.05      # FDR colour-scale upper limit (log10 scale; values above are squished)
 plot_w_cm       <- 9.38      # fixed plot width (cm)
 row_cm          <- 0.42      # per-pathway height; total height auto-scales with n selected
-wrap_width      <- 34        # wrap pathway labels to this many characters
-reset_selection <- F     # TRUE to (re)write/overwrite an existing selection TSV; FALSE keeps your edits
+wrap_width      <- 42        # wrap pathway labels to this many characters
+reset_selection <- FALSE    # TRUE to (re)write/overwrite an existing selection TSV; FALSE keeps your coded selection
 
 # Category grouping: code the `plot` column of the selection TSV with integers
 # (blank = exclude; 1, 2, 3, ... = category group). Map those codes -> the group
@@ -62,14 +70,14 @@ category_labels <- c(
 )
 cat_wrap <- 16               # wrap category group labels to this many characters
 
-# Overlap (size) scale -- FIXED across celltypes so a given overlap maps to the
-# same circle size in every plot (global overlap span across all 7 celltypes is
-# 3-37). Bump the upper limit if a future enrichR rerun exceeds it.
-overlap_limits <- c(3, 40)
-overlap_breaks <- c(3, 5, 10, 20, 30)
+# Overlap (size) scale -- FIXED so a given overlap maps to the same circle size
+# across runs. The pseudotime enrichment uses min_overlap = 5, so the scale
+# starts at 5. Bump the upper limit if a later run exceeds it.
+overlap_limits <- c(5, 20)
+overlap_breaks <- c(5, 10, 15, 20)
 
-slug    <- paste0("pathway_cat_phf1_", gsub("[^A-Za-z0-9]+", "_", celltype))
-out_dir <- file.path("plots/dotplot_pathway_cat_phf1", celltype)
+slug    <- paste0("pathway_linear_pseudotime_", gsub("[^A-Za-z0-9]+", "_", celltype))
+out_dir <- file.path("plots/dotplot_pathway_linear_pseudotime", celltype)
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 sel_file <- file.path(out_dir, paste0("selection_", slug, ".tsv"))
 
@@ -80,15 +88,15 @@ KEEP_COLS <- c("geneset", "description", "database",
 # Read a celltype/direction enrichR result. Prefers the *_merged.tsv (all
 # databases combined); falls back to rbind-ing the per-database TSVs.
 read_enrichr_dir <- function(ct, direction) {
-  d <- file.path("deg/de_cat/de_PHF1", ct, "enrichr", direction)
+  d <- file.path("deg/de_linear_pseudotime", ct, "enrichr", direction)
   if (!dir.exists(d)) return(NULL)
-  merged <- file.path(d, paste0(ct, "_PHF1TRUEVsPHF1FALSE_", direction, "_merged.tsv"))
+  merged <- file.path(d, "merged_enrichr.tsv")
   if (file.exists(merged)) {
     df <- read.delim(merged, sep = "\t", header = TRUE, quote = "",
                      stringsAsFactors = FALSE, check.names = FALSE)
   } else {
     fs <- list.files(d, pattern = "\\.tsv$", full.names = TRUE)
-    fs <- fs[!grepl("_merged\\.tsv$", fs)]
+    fs <- fs[!grepl("merged_enrichr\\.tsv$", fs)]
     if (length(fs) == 0) return(NULL)
     df <- do.call(rbind, lapply(fs, function(f)
       read.delim(f, sep = "\t", header = TRUE, quote = "",
@@ -107,15 +115,16 @@ up <- read_enrichr_dir(celltype, "UP")
 dn <- read_enrichr_dir(celltype, "DOWN")
 
 if (is.null(up) && is.null(dn)) {
-  stop("No enrichR output for celltype '", celltype,
-       "'. Valid: Astro, Exc-CT-L6-SYNPO2-SEMA3E, Exc-IT-L2-3-CBLN2-HOPX, ",
-       "Exc-IT-L3-5-CHGA-IL1RAPL2, Inh-VIP, Oligo, Unassigned.")
+  stop("No pseudotime enrichR output for celltype '", celltype,
+       "'. Run R/pathway_enrichment_cbln2_trajectory.R first.")
 }
 
 cand <- bind_rows(up, dn) %>%
   mutate(
     description      = trimws(description),
     celltype         = celltype,
+    # DIRECT sign (no flip): enrichR UP = rises toward the tangle-rich end -> positive;
+    # DOWN = falls toward it -> negative.
     signed_oddsratio = ifelse(direction == "UP", odds_ratio, -odds_ratio),
     plot             = ""
   ) %>%
@@ -133,7 +142,7 @@ if (!file.exists(sel_file) || reset_selection) {
           "\n-> Code the `plot` column (blank = exclude; 1, 2, 3, ... = category",
           " group), SAVE, then run PHASE 2.\n")
 } else {
-  message("\nSelection file already exists (edits preserved):\n  ", sel_file,
+  message("\nSelection file already exists (coded selection preserved):\n  ", sel_file,
           "\n-> Code the `plot` column (blank = exclude; 1, 2, 3, ... = category",
           " group), SAVE, then run PHASE 2.",
           "\n   Set reset_selection <- TRUE to regenerate a blank template.\n")
@@ -238,7 +247,7 @@ p <- ggplot(sel, aes(x = signed_oddsratio, y = label)) +
   # n pathways (space = "free_y"), with a small break between groups. Categories
   # are NOT labelled on the plot -- the y axis shows only pathway names.
   facet_grid(rows = vars(category), scales = "free_y", space = "free_y") +
-  labs(title = celltype, x = "Odds ratio (UP +, DOWN -)", y = NULL) +
+  labs(title = celltype, x = "Odds ratio", y = NULL) +
   theme_classic(base_size = 8) + fig_theme +
   theme(plot.title       = element_text(size = 8, face = "bold", hjust = 0.5),  # celltype only
         axis.text.x      = element_text(angle = 0, hjust = 0.5, vjust = 1),  # numeric x
@@ -267,12 +276,16 @@ write.table(source_df, file.path(out_dir, paste0("source_data_", slug, ".tsv")),
 
 # 3. human-readable stats log
 sink(file.path(out_dir, paste0("stats_", slug, ".txt")))
-cat("Dotplot -- PHF1+ vs PHF1- enrichR pathway enrichment\n")
+cat("Dotplot -- pseudotime-DEG (linear pseudotime along the tangle-associated trajectory) enrichR pathway enrichment\n")
 cat("Celltype:", celltype, "\n")
 cat("Date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n\n")
+cat("enrichR folders (direct): UP = rises toward the tangle-rich end of the trajectory;",
+    " DOWN = falls toward it.\n")
+cat("PLOTTED without a sign flip:",
+    " positive signed_oddsratio = RISES TOWARD THE TANGLE-RICH END.\n")
 cat("Inputs:\n")
-cat("  ", file.path("deg/de_cat/de_PHF1", celltype, "enrichr/UP/*_merged.tsv"), "\n")
-cat("  ", file.path("deg/de_cat/de_PHF1", celltype, "enrichr/DOWN/*_merged.tsv"), "\n")
+cat("  ", file.path("deg/de_linear_pseudotime", celltype, "enrichr/UP/merged_enrichr.tsv"), "\n")
+cat("  ", file.path("deg/de_linear_pseudotime", celltype, "enrichr/DOWN/merged_enrichr.tsv"), "\n")
 cat("  selection:", sel_file, "\n\n")
 cat("Candidate pathways: ", nrow(sel_all),
     "  (UP ", sum(sel_all$direction == "UP"),
@@ -286,7 +299,7 @@ for (i in seq_along(cat_ids)) {
       ", max OR = ", round(max(sel$odds_ratio[sel$cat_id == cat_ids[i]]), 2), ")\n", sep = "")
 }
 cat("\nAesthetics: y = pathway (grouped into categories via facets), ",
-    "x = signed odds ratio (UP +, DOWN -), size = overlap, colour = FDR.\n", sep = "")
+    "x = signed odds ratio (+ rising along trajectory / - falling), size = overlap, colour = FDR.\n", sep = "")
 cat("Plot size: ", plot_w_cm, " x ", round(h_cm, 2), " cm.\n\n", sep = "")
 cat("Plotted pathways:\n")
 print(source_df[, c("category_code", "category", "direction", "description",

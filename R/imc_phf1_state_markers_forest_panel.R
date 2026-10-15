@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_phf1_state_markers_forest_panel.R
 #
-# Figure panels: 2E
+# Figure panels: 2H
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -13,22 +13,22 @@
 # ---------------------------------------------------------------------------
 # imc_phf1_state_markers_forest_panel.R
 #
-# Fig 2E (IMC state markers, tangle-bearing vs tangle-free excitatory neurons, subcluster-adjusted)
-# redrawn as a forest in the style of the Fig 3E forest (R/imc_phf1_distance_markers_subsets.R):
+# Fig 2H (IMC state markers, tangle-bearing vs tangle-free excitatory neurons, subcluster-adjusted)
+# redrawn as a forest in the style of the Fig 3H forest (R/imc_phf1_distance_markers_subsets.R):
 # one point per marker = the per-marker Set 3 linear mixed model estimate,
 #
 #   value ~ grp + subcluster + Sex + Age_s + PMI_s + (1 | patient_id)
 #
 # The estimates are NOT refitted here. They are read verbatim from the output
 # (plots/imc_phf1_state_markers_subsets/source_data_exc_subcluster_adj.tsv, fit SUB of
-# R/imc_phf1_state_markers_subsets.R), so the points are exactly the 2E numbers (log2FC).
+# R/imc_phf1_state_markers_subsets.R), so the points are exactly the 2H numbers (log2FC).
 #
-# Colour follows the 2E call (padj < 0.05 AND |log2FC| >= 0.25), not 3E's padj-only rule: every
+# Colour follows the 2H call (padj < 0.05 AND |log2FC| >= 0.25), not 3H's padj-only rule: every
 # marker here clears padj, so a padj-only rule would colour all ten red. There is no legend on the
 # panel. AT8 (positive control) shares the axis.
 #
 # BAR = donor spread, NOT a confidence interval: the central 95% (2.5th-97.5th percentile) of the
-# 44 per-donor contrasts, on the same log2FC mapping, drawn 3E-style. It is a data display -- the
+# 44 per-donor contrasts, on the same log2FC mapping, drawn 3H-style. It is a data display -- the
 # random-intercept model assumes one effect for every donor, so it has no donor-effect variance to
 # draw. The model's own 95% CI (~ +/-0.02-0.06 log2FC, narrower than the point) is not drawn; it
 # is in the source data and stats log. Point and colour are unchanged Set 3.
@@ -37,7 +37,7 @@
 # Each donor's contrast is a within-donor OLS value ~ grp + subcluster (the Set 3 donor-constant
 # terms drop out inside one donor), which also feeds the bar; the log reports dz and the number
 # of the 44 donors concordant with the model estimate.
-# The cell frame is rebuilt with the 2E filter and asserted against the 2E table's counts.
+# The cell frame is rebuilt with the 2H filter and asserted against the 2H table's counts.
 #
 # Outputs the standard TRIPLE under plots/imc_phf1_state_markers_forest_panel/. Sized 8.7 x 6.5 cm.
 
@@ -56,7 +56,7 @@ dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 SLUG <- "exc_subcluster_adj_forest"
 
 src_file <- "plots/imc_phf1_state_markers_subsets/source_data_exc_subcluster_adj.tsv"
-FDR     <- 0.05     # 2E call, copied from R/imc_phf1_state_markers_subsets.R
+FDR     <- 0.05     # 2H call, copied from R/imc_phf1_state_markers_subsets.R
 LFC_MIN <- 0.25
 
 localwd <- "<IMC_ROOT>/"
@@ -64,7 +64,7 @@ spe <- readRDS(paste0(localwd, "spe.rds"))
 stopifnot("PHF1_Otsu" %in% colnames(colData(spe)))
 
 # -------------------------------------------------------------------
-# 2E model estimates (the plotted numbers)
+# 2H model estimates (the plotted numbers)
 # -------------------------------------------------------------------
 pool <- read.delim(src_file, stringsAsFactors = FALSE)
 stopifnot(all(pool$fit == "SUB: all Exc + subcluster"), !anyNA(pool$logFC.L), !anyNA(pool$logFC.R))
@@ -91,7 +91,7 @@ md <- cd %>%
          celltype_clusters = as.character(celltype_clusters),
          grp = factor(ifelse(PHF1_Otsu == "PHF1_pos", "PHF1+", "PHF1-"),
                       levels = c("PHF1-", "PHF1+")))
-# the rebuilt frame must be the one the 2E estimates came from
+# the rebuilt frame must be the one the 2H estimates came from
 stopifnot(nrow(md) == pool$n_cells[1], sum(md$grp == "PHF1+") == pool$n_pos[1],
           n_distinct(md$patient_id) == pool$n_donors[1],
           setequal(markers, setdiff(rownames(spe)[rowData(spe)$marker_class == "state"], "PHF1")))
@@ -146,7 +146,8 @@ fig <- ggplot(fpd, aes(x = x, y = gene_lab, colour = sig)) +
   geom_point(size = 1.7) +
   scale_colour_manual(values = c("not called" = "grey65", "called" = "#BD0026"),
                       drop = FALSE, guide = "none") +
-  labs(x = expression(Log[2]*" (fold-change), tangle-bearing / tangle-free"), y = NULL) +
+  labs(x = expression(Log[2]*" (fold-change), tangle-bearing / tangle-free"),
+       y = "IMC protein marker") +
   theme_classic(base_size = 8) + fig_theme +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         legend.position = "none", plot.margin = margin(4, 8, 4, 4, unit = "pt"))
@@ -171,7 +172,7 @@ wr(donor_est %>% select(gene, patient_id, est, logFC, n_pos, n_neg),
    sprintf("stats_%s_donor_contrasts.tsv", SLUG))
 
 sink(file.path(out_dir, sprintf("stats_%s.txt", SLUG)))
-title <- "Tangle-bearing vs tangle-free state markers, subcluster-adjusted (IMC, Fig 2E forest)"
+title <- "Tangle-bearing vs tangle-free state markers, subcluster-adjusted (IMC, Fig 2H forest)"
 cat(title, "\n"); cat(strrep("=", nchar(title)), "\n", sep = "")
 cat("Date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n\n")
 cat("MODEL (Set 3, per marker; estimates read verbatim from ", src_file, "):\n", sep = "")
@@ -180,7 +181,7 @@ cat("  Outcome asinh intensity, REML (lmerTest). grp = PHF1+ (tangle-bearing) vs
 cat("  (tangle-free); contrast read directly as grpPHF1+ (PHF1+ minus PHF1-).\n")
 cat("  log2FC = log2(sinh(mu_neg + est)/sinh(mu_neg)), mu_neg = observed mean asinh in PHF1-\n")
 cat("  cells; sinh is monotone, so the 95% CI maps straight onto the log2FC bounds.\n")
-cat(sprintf("  BH across %d markers. Red = padj < %.2f AND |log2FC| >= %.2f (2E call); grey = below\n",
+cat(sprintf("  BH across %d markers. Red = padj < %.2f AND |log2FC| >= %.2f (2H call); grey = below\n",
             length(markers), FDR, LFC_MIN))
 cat("  that call. Every marker here has padj < 0.05, so grey means below the effect-size floor.\n")
 cat("POINT = model estimate. BAR = central 95% (2.5th-97.5th percentile, quantile type 7) of the\n")
@@ -216,14 +217,14 @@ cat("\nPHF1+ cells per donor: median", median(donor_info$n_pos), " range",
 cat("\nNOTES\n-----\n")
 cat("- AT8 is a POSITIVE CONTROL: it stains the same tau species as PHF1.\n")
 cat("- subcluster is listed as a sensitivity term in docs/MODELS.md Set 3; it is in this model because\n")
-cat("  the 2E panel uses the subcluster-adjusted fit.\n")
+cat("  the 2H panel uses the subcluster-adjusted fit.\n")
 cat("- PHF1_Otsu is a per-donor Otsu threshold with a hard floor, so tangle-bearing is a\n")
 cat("  thresholded call on a continuous stain.\n")
 cat("- sample_id (ROI) is not modelled (Set 3).\n")
 cat("\n"); print(sessionInfo())
 sink()
 
-cat("\n== Forest (2E model) ==\n")
+cat("\n== Forest (2H model) ==\n")
 print(as.data.frame(pool %>% arrange(desc(logFC)) %>%
   select(gene, logFC, logFC.L, logFC.R, padj, called)), row.names = FALSE, digits = 3)
 cat("\n== Donor concordance ==\n")

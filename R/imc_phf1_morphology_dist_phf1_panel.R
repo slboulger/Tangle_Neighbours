@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_phf1_morphology_dist_phf1_panel.R
 #
-# Figure panels: 5A, S7A
+# Figure panels: 5A, S5A
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

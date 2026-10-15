@@ -145,7 +145,7 @@ for j, tl in enumerate(tiles):
              ha="center", va="top", fontsize=7)
 
 # group brackets: tangle-free = PHF1_Otsu negative, tangle-bearing = PHF1_Otsu positive
-for g, lab_txt in ((0, "Tangle-free"), (1, "Tangle-bearing")):   # PHF1- / PHF1+ (PHF1_Otsu)
+for g, lab_txt in ((0, r"PHF1$_{\mathregular{low}}$"), (1, r"PHF1$_{\mathregular{high}}$")):   # PHF1- / PHF1+ (PHF1_Otsu); \mathregular keeps the subscript in Arial
     x0, x1 = xpos(3 * g), xpos(3 * g + 2) + tw
     yb = H - top_hdr + 0.24
     fig.add_artist(plt.Line2D([x0 / W, x1 / W], [yb / H, yb / H], color="black", lw=0.6))
