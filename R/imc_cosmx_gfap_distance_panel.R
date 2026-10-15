@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_cosmx_gfap_distance_panel.R
 #
-# Figure panels: 6C
+# Figure panels: 6D
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

@@ -26,7 +26,7 @@ cells within 1,000 µm), tangle status (all cells of the type), or scaled pseudo
 Exc-IT-L2-3-CBLN2-HOPX neurons, `pt_scaled = pseudotime / sd(pseudotime)`).
 
 **Panels:** Fig. 2G, 3B, 3C, 3D, 3F, 3G,
-6B, 6E (and the CosMx series of 6C); Figs S1A-C, S2A-C, S3A-C, S4A-C, S7A-F; Tables S4 and S6.
+6B, 6C (and the CosMx series of 6D); Figs S1A-C, S2A-C, S3A-C, S4A-C, S7A-F; Tables S4 and S6.
 
 ### Set 2 — image-derived outcome
 
@@ -65,7 +65,7 @@ dilated 4G8+ mask), `scaled_Y` / `depth_s` (relative cortical depth), `subcluste
 transform*), with `dist_sd` recomputed per cell set, so "per s.d." magnitudes are not comparable
 across panels.
 
-**Panels:** Fig. 2H, 3H, 5A, 5B and the IMC series of 6C; Figs S5A and S6A-E.
+**Panels:** Fig. 2H, 3H, 5A, 5B and the IMC series of 6D; Figs S5A and S6A-E.
 
 | Panel | Script | n |
 |---|---|---|
@@ -73,10 +73,10 @@ across panels.
 | Fig. 3H protein gradients | `R/imc_phf1_distance_markers_subsets.R` | 26,653 cells, 44 donors |
 | Fig. 5A nucleus area vs distance (and S5A eccentricity) | `R/imc_phf1_morphology_dist_phf1_panel.R` | 26,653 cells, 44 donors |
 | Fig. 5B total nuclear DNA vs distance | `R/imc_phf1_dna_dist_phf1_panel.R` | 26,653 cells |
-| Fig. 6C GFAP vs distance (IMC series) | `R/imc_phf1_glia_distance.R`, drawn by `R/imc_cosmx_gfap_distance_panel.R` | 26,832 astrocytes, 44 donors |
+| Fig. 6D GFAP vs distance (IMC series) | `R/imc_phf1_glia_distance.R`, drawn by `R/imc_cosmx_gfap_distance_panel.R` | 26,832 astrocytes, 44 donors |
 
 **Within-donor z-scoring in the glia intensity panels.** The two intensity outcomes in
-`R/imc_phf1_glia_distance.R` (including the Fig. 6C GFAP series) are z-scored within donor, so
+`R/imc_phf1_glia_distance.R` (including the Fig. 6D GFAP series) are z-scored within donor, so
 that the plotted rolling curve and the fitted coefficient describe the same within-donor
 gradient. Because the outcome then has no between-donor variance, the donor random-intercept
 variance is estimated at zero and the fit is equivalent to pooled least squares on the
@@ -165,9 +165,9 @@ This covers Fig. 5C (rRNA channel) and Fig. S5B (nucleus area).
 | Fig. 5B | `R/imc_phf1_dna_dist_phf1_panel.R` | Set 3 |
 | Fig. 5C | `R/phf1_channel_intensity_exc.R` | Set 2 |
 | Fig. 6A | `R/plot_dist_to_phf1_by_glia_vs_null.R` + `R/null_glia_distance_within_celltype.R` | label-permutation null within cell type and donor |
-| Fig. 6B | `R/plot_serrano_astro_vs_phf1_distance_modelp.R` | Set 1 |
-| Fig. 6C | `R/imc_phf1_glia_distance.R` (IMC) and the GFAP row of `R/deg_dream_linear_distance_phf1.r` (CosMx), drawn by `R/imc_cosmx_gfap_distance_panel.R` | Set 3 (IMC) / Set 1 (CosMx) |
-| Fig. 6E | `R/plot_modulescore_vs_phf1_distance_modelp.R` | Set 1 |
+| Fig. 6B | `R/plot_modulescore_vs_phf1_distance_modelp.R` | Set 1 |
+| Fig. 6C | `R/plot_serrano_astro_vs_phf1_distance_modelp.R` | Set 1 |
+| Fig. 6D | `R/imc_phf1_glia_distance.R` (IMC) and the GFAP row of `R/deg_dream_linear_distance_phf1.r` (CosMx), drawn by `R/imc_cosmx_gfap_distance_panel.R` | Set 3 (IMC) / Set 1 (CosMx) |
 | Fig. S1A-C | `R/phf1_module_distance_intensity_adjust.R`; S1A redrawn by `R/replot_intensity_adjust_forest_otero.R` | Set 1 (+ per-cell PHF1 intensity) |
 | Fig. S2A-C | `R/modulescore_seg_control_vs_phf1_distance.R` → `R/plot_seg_control_composite_matched.R` (`--astro_source serrano --cbln2_series otero`) | Set 1 |
 | Fig. S3A-C | `R/run_deg_linear_distance.sh` → `R/collate_exclusion_radius.r`; `R/deg_dream_linear_distance_depth_phf1.r` → `R/collate_depth_covariate.r`; `R/deg_dream_linear_distance_3d_phf1.r` → `R/collate_3d_distance_deg.r` | Set 1 (+ `depth_s` in S3B; recomputed 3D distance in S3C) |
@@ -178,7 +178,7 @@ This covers Fig. 5C (rRNA channel) and Fig. S5B (nucleus area).
 | Fig. S6D, S6E | `R/imc_amyloid_tangle_coupling.R` | Set 3 within plaque strata, plus the auxiliary δ regressions above |
 | Fig. S7A-F | `R/plot_reactome_stress_death_vs_phf1_distance.R` | Set 1 |
 
-Panels 1B-1E, 2E, 2F, 2I, 5D and 6D are descriptive or image panels and fit no model.
+Panels 1B-1E, 2E, 2F, 2I, 5D and 6E are descriptive or image panels and fit no model.
 
 ---
 

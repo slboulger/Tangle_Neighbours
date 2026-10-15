@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # plot_serrano_astro_vs_phf1_distance_modelp.R
 #
-# Figure panels: 6B
+# Figure panels: 6C
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).
@@ -35,12 +35,12 @@
 #   score ~ log(dist)_scaled + nUMI_log + percent_neg + Sex + Age + PMI + (1|sample_id)
 #   dist_scaled = log(dist_to_phf1_um) / sd(log(dist_to_phf1_um)), within Astro, within cap.
 #
-# Model types: "log" only (the reported fit, Fig. 6B). "decay" is NOT run here: it is gated
+# Model types: "log" only (the reported fit, Fig. 6C). "decay" is NOT run here: it is gated
 # on the log model and needs the SEG baseline scoring. Also written, as in the parent: the raw
 # model-free rolling mean overlay and the per-donor rolling-mean view.
 #
 # OUTPUT, under --output_dir:
-#   plot_modulescore_dist_serrano_states_Astro_log.pdf                 -- Fig. 6B
+#   plot_modulescore_dist_serrano_states_Astro_log.pdf                 -- Fig. 6C
 #   source_data_modulescore_dist_serrano_states_Astro_log_fit.tsv
 #   source_data_modulescore_dist_serrano_states_Astro_log_persample.tsv
 #   stats_modulescore_dist_serrano_states_Astro_log.txt
@@ -345,7 +345,7 @@ x_cap_of <- function(df) if (is.finite(MAX_DIST)) MAX_DIST else
   as.numeric(quantile(df$dist_to_phf1_um, 0.99))
 
 ##  ............................................................................
-##  Log-distance LMM per module (Fig. 6B model)                           ####
+##  Log-distance LMM per module (Fig. 6C model)                           ####
 cat(sprintf("\n=== %s / %s  (model: log_um%s) ===\n", GROUP, CT,
             if (is.finite(MAX_DIST)) sprintf(", <=%gum", MAX_DIST) else ""))
 df_full <- astro_df

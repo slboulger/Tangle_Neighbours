@@ -93,10 +93,10 @@ Machine-readable version: [figure_panel_map.tsv](figure_panel_map.tsv).
 | **5C** | CosMx rRNA channel vs tangle distance, CBLN2 | CosMx | [`phf1_channel_intensity_exc.R`](R/phf1_channel_intensity_exc.R)<br>[`run_morphology_observed.sh`](R/run_morphology_observed.sh)<br>[`nn3_phf1_vs_neg.R`](R/nn3_phf1_vs_neg.R) (covariate cache) |
 | **5D** | Representative IMC nuclei, tangle-bearing vs tangle-free, paired by subcluster | IMC image | [`imc_phf1_nucleus_crops.py`](python/imc_phf1_nucleus_crops.py)<br>[`imc_phf1_nucleus_crops_figure.py`](python/imc_phf1_nucleus_crops_figure.py)<br>[`imc_phf1_nucleus_crops_pairs.py`](python/imc_phf1_nucleus_crops_pairs.py)<br>[`imc_phf1_nucleus_crops_singles.py`](python/imc_phf1_nucleus_crops_singles.py) |
 | **6A** | Tangle-to-glia distance vs label-shuffled null | CosMx | [`plot_dist_to_phf1_by_glia_vs_null.R`](R/plot_dist_to_phf1_by_glia_vs_null.R)<br>[`null_glia_distance_within_celltype.R`](R/null_glia_distance_within_celltype.R)<br>[`plot_dist_to_phf1_braak_celltype.R`](R/plot_dist_to_phf1_braak_celltype.R) (per-cell distances) |
-| **6B** | Astrocyte state module scores vs distance (Serrano-Pozo states) | CosMx | [`plot_serrano_astro_vs_phf1_distance_modelp.R`](R/plot_serrano_astro_vs_phf1_distance_modelp.R) |
-| **6C** | GFAP vs tangle distance | IMC (+ CosMx) | [`imc_cosmx_gfap_distance_panel.R`](R/imc_cosmx_gfap_distance_panel.R)<br>[`imc_phf1_glia_distance.R`](R/imc_phf1_glia_distance.R) (IMC curve and fit) |
-| **6D** | Representative IMC ROI (PHF1/GFAP/S100B/DNA) | IMC image | *not archived* |
-| **6E** | Microglial reactive module scores vs distance | CosMx | [`plot_modulescore_vs_phf1_distance_modelp.R`](R/plot_modulescore_vs_phf1_distance_modelp.R) |
+| **6B** | Microglial reactive module scores vs distance | CosMx | [`plot_modulescore_vs_phf1_distance_modelp.R`](R/plot_modulescore_vs_phf1_distance_modelp.R) |
+| **6C** | Astrocyte state module scores vs distance (Serrano-Pozo states) | CosMx | [`plot_serrano_astro_vs_phf1_distance_modelp.R`](R/plot_serrano_astro_vs_phf1_distance_modelp.R) |
+| **6D** | GFAP vs tangle distance | IMC (+ CosMx) | [`imc_cosmx_gfap_distance_panel.R`](R/imc_cosmx_gfap_distance_panel.R)<br>[`imc_phf1_glia_distance.R`](R/imc_phf1_glia_distance.R) (IMC curve and fit) |
+| **6E** | Representative IMC ROI (PHF1/GFAP/S100B/DNA) | IMC image | *not archived* |
 
 ### Supplementary figures
 
@@ -264,7 +264,7 @@ first. Within a stage, order is as listed.
    - **2H, S6B**: [`imc_phf1_state_markers_subsets.R`](R/imc_phf1_state_markers_subsets.R)
      before `imc_phf1_state_markers_forest_panel.R` and `imc_covariate_sensitivity.R`.
      It writes the per-marker estimates in `plots/imc_phf1_state_markers_subsets/`.
-   - **6C**: [`imc_phf1_glia_distance.R`](R/imc_phf1_glia_distance.R) before
+   - **6D**: [`imc_phf1_glia_distance.R`](R/imc_phf1_glia_distance.R) before
      `imc_cosmx_gfap_distance_panel.R`. It writes the IMC rolling mean and fit in
      `plots/imc_phf1_glia_distance/`.
 

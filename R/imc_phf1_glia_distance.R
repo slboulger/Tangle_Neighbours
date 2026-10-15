@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # imc_phf1_glia_distance.R
 #
-# Figure panels: 6C - upstream step
+# Figure panels: 6D - upstream step
 # Writes the IMC GFAP rolling mean and Set 3 fit
 # (plots/imc_phf1_glia_distance/) that imc_cosmx_gfap_distance_panel.R reads.
 #

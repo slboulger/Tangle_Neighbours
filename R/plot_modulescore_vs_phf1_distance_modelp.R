@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # plot_modulescore_vs_phf1_distance_modelp.R
 #
-# Figure panels: 6E
+# Figure panels: 6B
 #
 # Repository: Tangle_Neighbours - spatial analysis of the neuronal and glial
 # microenvironment around tau-tangle-bearing neurons (CosMx 6k + IMC).

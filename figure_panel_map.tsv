@@ -31,10 +31,10 @@ panel	description	modality	scripts	output_directory
 5C	CosMx rRNA channel vs tangle distance, CBLN2	CosMx	phf1_channel_intensity_exc.R; run_morphology_observed.sh; nn3_phf1_vs_neg.R	phf1_v2/plots/phf1_channel_intensity_combined_1000um/
 5D	Representative IMC nuclei, tangle-bearing vs tangle-free, paired by subcluster	IMC image	imc_phf1_nucleus_crops.py; imc_phf1_nucleus_crops_figure.py; imc_phf1_nucleus_crops_pairs.py; imc_phf1_nucleus_crops_singles.py	phf1_v2/plots/imc_phf1_nucleus_crops/
 6A	Tangle-to-glia distance vs label-shuffled null	CosMx	plot_dist_to_phf1_by_glia_vs_null.R; null_glia_distance_within_celltype.R; plot_dist_to_phf1_braak_celltype.R	phf1_v2/plots/dist_to_phf1_glia_vs_null/
-6B	Astrocyte state module scores vs distance (Serrano-Pozo states)	CosMx	plot_serrano_astro_vs_phf1_distance_modelp.R	phf1_v2/plots/module_score_serrano_astro_vs_phf1_distance_modelp_1000um/
-6C	GFAP vs tangle distance	IMC + CosMx	imc_cosmx_gfap_distance_panel.R; imc_phf1_glia_distance.R	phf1_v2/plots/imc_cosmx_gfap_distance_panel/
-6D	Representative IMC ROI (PHF1/GFAP/S100B/DNA)	IMC image	(not archived)	plots/imc_gfap_images/
-6E	Microglial reactive module scores vs distance	CosMx	plot_modulescore_vs_phf1_distance_modelp.R	phf1_v2/plots/module_score_vs_phf1_distance_modelp_1000um/
+6B	Microglial reactive module scores vs distance	CosMx	plot_modulescore_vs_phf1_distance_modelp.R	phf1_v2/plots/module_score_vs_phf1_distance_modelp_1000um/
+6C	Astrocyte state module scores vs distance (Serrano-Pozo states)	CosMx	plot_serrano_astro_vs_phf1_distance_modelp.R	phf1_v2/plots/module_score_serrano_astro_vs_phf1_distance_modelp_1000um/
+6D	GFAP vs tangle distance	IMC + CosMx	imc_cosmx_gfap_distance_panel.R; imc_phf1_glia_distance.R	phf1_v2/plots/imc_cosmx_gfap_distance_panel/
+6E	Representative IMC ROI (PHF1/GFAP/S100B/DNA)	IMC image	(not archived)	plots/imc_gfap_images/
 S1A	Otero-Garcia distance slope before vs after PHF1-intensity adjustment	CosMx	replot_intensity_adjust_forest_otero.R; phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
 S1B	Intensity-adjusted slope after 0-200 um exclusion	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
 S1C	Slope within PHF1-intensity deciles	CosMx	phf1_module_distance_intensity_adjust.R	phf1_v2/plots/phf1_distance_intensity_adjust_1000um/
