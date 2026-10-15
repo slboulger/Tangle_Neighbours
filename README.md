@@ -360,7 +360,8 @@ is the primary record.
 | multcomp | 1.4-29 | | scMerge | 1.22.0 |
 | mgcv | 1.9-4 | | RANN | 2.6.2 |
 | slingshot | 2.14.0 | | TrajectoryUtils | 1.14.0 |
-| princurve | 2.1.6 | | harmony | see stats log |
+| princurve | 2.1.6 | | harmony | 1.2.4 |
+| uwot | 0.2.4 | | | |
 
 Imaging and instrument software:
 
