@@ -2,14 +2,14 @@ cff-version: 1.2.0
 message: "If you use this code, please cite it as below."
 type: software
 title: "Code for: Neuronal and glial transcriptional states vary with proximity to tangle-bearing neurons in the human entorhinal cortex"
-version: 1.0.0
-date-released: 2026-10-06
+version: 1.1.0
+date-released: 2026-10-15
 license: MIT
 repository-code: "https://github.com/slboulger/Tangle_Neighbours"
 abstract: >-
   Analysis code for a study combining 6,000-plex CosMx spatial transcriptomics
   of human entorhinal cortex with post-run PHF1 immunofluorescence (167,176 cells,
-  9 donors) and imaging mass cytometry (127,157 cells, 44 donors) to characterise
+  9 donors) and imaging mass cytometry (170,195 cells, 62 donors) to characterise
   tangle-bearing neurons and how neuronal and glial states vary with distance to
   the nearest tangle-bearing neuron.
 keywords:
